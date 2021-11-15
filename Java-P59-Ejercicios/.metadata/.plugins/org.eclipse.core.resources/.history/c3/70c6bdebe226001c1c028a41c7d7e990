@@ -1,0 +1,66 @@
+package ejercicio7;
+
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class Registro {
+	// Atributos
+	public Scanner leer = new Scanner(System.in);
+	private String estudiantes[];
+	public static final int NUMNOTAS = 3;
+	public double promedio=0.00;
+	private double notas[][];
+
+	private String materia;
+	private int dimension;
+
+	// Constructor
+	public Registro(String materia, int dimension) {
+		this.materia = materia;
+		this.dimension = dimension;
+
+		this.estudiantes = new String[this.dimension];
+		this.notas = new double[this.estudiantes.length][this.NUMNOTAS];
+
+	}
+
+	// Metodos
+	public void registrar() {
+		System.out.println("++ Registrar Estudiantes de " + materia + " ++");
+		for (int i = 0; i < estudiantes.length; i++) {
+			System.out.print("Est.Nº" + (i + 1) + ": ");
+			estudiantes[i] = leer.next();
+
+			for (int j = 0; j < NUMNOTAS; j++) {
+				System.out.print("Notaº" + (j + 1) + ": ");
+				this.notas[i][j] = leer.nextDouble();
+			}
+		}
+
+		System.out.println("\n");
+
+	}
+
+	public void listar() {
+		System.out.println("Listado de clases: " + materia);
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+		System.out.println("\t\t\tNota1:\tNota2:\tNota3:\tPromedio:");
+		for (int i = 0; i < estudiantes.length; i++) {
+			System.out.print("Est.Nº" + (i + 1) + ": ");
+			System.out.print("\t" + estudiantes[i]);
+			for (int j=0;j<NUMNOTAS;j++) {
+				System.out.print("\t"+this.notas[i][j]);
+				
+				promedio+=this.notas[i][j];
+				promedio=promedio/NUMNOTAS;
+			
+			}
+			System.out.print("\t"+promedio);
+			System.out.print("\n");
+
+		}
+		System.out.print("\n");
+
+	}
+}
+	
